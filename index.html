@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    >
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML Form</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+      <form
+        action=""
+        method="POST"
+        onsubmit="onSubmit()"
+        autocomplete="off"
+        class="form">
+          <label for="newPair" class="pairInput">
+            Name/Value Pair
+                <input
+                  type="text"
+                  id="newPair"
+                  name="newPair"
+                  pattern="[a-z]{4,8}"
+                >
+          </label>
+          <button type="button" id="addPairButton">Add</button>
+          <p>Name/Value Pair List</p>
+          <ul id="list"></ul>
+          <button id="sortByName">Sort by Name</button>
+          <button id="sortByValue">Sort by Value</button>
+          <button id="deletePairButton">Delete</button>
+          <button>Show XML</button>
+      </form>
+      <script type="text/javascript" src="main.js"></script>
+  </body>
+</html>
