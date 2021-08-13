@@ -6,6 +6,7 @@ let input = document.querySelector('input');
 let deletePairButton = document.getElementById('deletePairButton');
 let sortByName = document.getElementById('sortByName');
 let sortByValue = document.getElementById('sortByValue');
+let showXml = document.getElementById('showXml');
 
 addPairButton.addEventListener('click', () => {
   if (input.value.includes('=')) {
@@ -68,3 +69,11 @@ function sortPairsByValue() {
 
   list.innerHTML = sortByValue.toString().replaceAll(',', '');
 }
+
+const toXml = (data) => {
+  return data.reduce((result, el) => {
+   return result + `<trkpt lat="${el.lat}" lon="${el.lon}"><ele>${el.ele}</ele></trkpt>\n`
+  }, '')
+}
+
+console.log(toXml(data));
