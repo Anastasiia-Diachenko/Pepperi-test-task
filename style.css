@@ -1,0 +1,77 @@
+.page {
+  background-color: lightskyblue;
+}
+
+.content {
+  margin: 62px auto;
+  width: fit-content;
+  padding: 46px;
+
+  border: 1px solid lightgray;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.input {
+  display: block;
+  width: 40vw;
+
+  border: 1px solid lightgray;
+}
+
+.addPair {
+  display: flex;
+  gap: 46px;
+}
+
+.addButton {
+  height: 50%;
+  align-self: flex-end;
+}
+
+.list {
+  height: 50vh;
+  width: 40vw;
+  margin-top: 0;
+  padding: 3px;
+
+  border: 1px solid lightgray;
+}
+
+.listName {
+  margin-bottom: 0;
+}
+
+.pairsList {
+  display: flex;
+  gap: 46px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+
+  white-space: nowrap;
+}
+
+.button {
+  width: fit-content;
+  box-shadow: inset 2px -7px 11px lightgray;
+}
+
+@media (max-width: 320px) {
+  .pairsList {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  .content {
+    padding: 12px;
+  }
+}
+
+li {
+  list-style-type: none;
+}
