@@ -98,13 +98,5 @@ function sortPairsByValue() {
 showXml.addEventListener('click', (e) => {
   e.preventDefault();
 
-  // let arr = [];
-
-  // const toXml = (pairs) => {
-  //   return pairs.reduce((result, el) => {
-  //     return result + `<trkpt><ele>${el}</ele></trkpt>\n`
-  //   }, '');
-  // }
-
   list.innerText = pairs.map(pair => `<trkpt><el>${pair}</el></trkpt>`).join('\n');
 })
