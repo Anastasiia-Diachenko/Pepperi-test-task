@@ -9,13 +9,37 @@ let sortByValue = document.getElementById('sortByValue');
 let showXml = document.getElementById('showXml');
 
 addPairButton.addEventListener('click', () => {
-  if (input.value.includes('=')) {
-    pairs.push(input.value);
-    input.value = '';
-  } else {
-    return false;
+  let validPair = [];
+
+  let isForbiddenSymbol = /[!@#$%^&*()_+\-\[\]{};':"\\|,.<>\/?]+/;
+  let errorMessage = 'Please enter a pair in a correct format';
+
+  let testResult = isForbiddenSymbol.test(input.value);
+
+  if (input.value.length === 0 || testResult === true) {
+    alert(errorMessage);
+    return;
   }
 
+  if (input.value.length > 0 && input.value.includes('=')) {
+    validPair.push(input.value);
+  } else {
+    alert(errorMessage);
+  }
+
+  for (let i = 0; i < validPair.length; i++) {
+    let splitedPairs = validPair[i].split('=');
+    let name = splitedPairs[0].trim();
+    let value = splitedPairs[1].trim();
+
+    if (input.value.length > 0 && value) {
+      pairs.push(`${name}=${value}`);
+    } else {
+      alert(errorMessage);
+    }
+  }
+
+  input.value = '';
   addPairs();
 });
 
@@ -62,18 +86,25 @@ function sortPairsByValue() {
   }
 
   let sortByValue = arr.sort().map(pair => {
-    let reversedPair = pair.split('=').reverse().join('=')
+    let reversedPair = pair.split('=').reverse().join('=');
+    let reversedAgain = reversedPair.split('=').reverse().join('=').toLocaleLowerCase();
 
-    return `<li>${reversedPair}</li>`;
+    return `<li>${reversedAgain}</li>`;
   })
 
   list.innerHTML = sortByValue.toString().replaceAll(',', '');
 }
 
-const toXml = (data) => {
-  return data.reduce((result, el) => {
-   return result + `<trkpt lat="${el.lat}" lon="${el.lon}"><ele>${el.ele}</ele></trkpt>\n`
-  }, '')
-}
+showXml.addEventListener('click', (e) => {
+  e.preventDefault();
 
-console.log(toXml(data));
+  // let arr = [];
+
+  // const toXml = (pairs) => {
+  //   return pairs.reduce((result, el) => {
+  //     return result + `<trkpt><ele>${el}</ele></trkpt>\n`
+  //   }, '');
+  // }
+
+  list.innerText = pairs.map(pair => `<trkpt><el>${pair}</el></trkpt>`).join('\n');
+})
